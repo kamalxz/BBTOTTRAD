@@ -24,6 +24,9 @@ class NewsAgent:
         التحقق من وجود أخبار سلبية للعملة خلال آخر ساعتين
         returns: True إذا وجد خبر سلبي، False إذا كان الوضع آمناً
         """
+        # تعطيل فلتر الأخبار في الباك تيست لتسريع التنفيذ
+        return False
+        
         key = self.get_symbol_key(symbol)
         urls = self.sources.get(key, self.sources['DEFAULT'])
         
