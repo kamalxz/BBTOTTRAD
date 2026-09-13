@@ -1,0 +1,11 @@
+[
+  "tests/test_imports.py::test_analysis_imports",
+  "tests/test_imports.py::test_config_exists",
+  "tests/test_imports.py::test_day_trader_imports",
+  "tests/test_imports.py::test_exchange_imports",
+  "tests/test_imports.py::test_position_trader_futures_imports",
+  "tests/test_imports.py::test_position_trader_imports",
+  "tests/test_imports.py::test_scalper_imports",
+  "tests/test_imports.py::test_swing_trader_imports",
+  "tests/test_imports.py::test_telegram_alerts_imports"
+]
