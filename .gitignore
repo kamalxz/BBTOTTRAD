@@ -1,1 +1,37 @@
-Nothing needs to be added to .gitignore since only a Python source file was added and no build artifacts, dependencies, or temporary files are present in the changes.
+```
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Build artifacts
+build/
+dist/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+
+# Environment files
+.env
+.env.local
+*.env.*
+
+# Coverage
+.coverage
+coverage/
+htmlcov/
+
+# MyPy
+.mypy_cache/
+
+# PyTest
+.pytest_cache/
+
+# Backtest results
+**/backtest_results_*.csv
+```

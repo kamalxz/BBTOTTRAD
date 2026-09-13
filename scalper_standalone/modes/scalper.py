@@ -119,9 +119,19 @@ class ScalperBot:
         min_len = min(len(d['5m']) for d in data_dict.values())
         active_trades = []
         
+        # حساب مسبق للمؤشرات
+        print("⏳ جاري حساب المؤشرات...")
+        precalculated = {}
+        for symbol, dfs in data_dict.items():
+            precalculated[symbol] = {
+                '5m': self.calculate_indicators(dfs['5m'].copy()),
+                '15m': self.calculate_indicators(dfs['15m'].copy())
+            }
+        print("✅ اكتمل حساب المؤشرات")
+        
         # حلقة زمنية محاكية للسوق
         for i in range(200, min_len):
-            for symbol, dfs in data_dict.items():
+            for symbol, dfs in precalculated.items():
                 df_5m = dfs['5m'].iloc[:i+1].copy()
                 df_15m = dfs['15m'].iloc[:i+1].copy()
                 

@@ -231,15 +231,21 @@ class ScalperBot:
         min_len = min(len(d['5m']) for d in data_dict.values())
         active_trades = []
         
+        # حساب مسبق للمؤشرات لكل البيانات (لتسريع الباك تيست)
+        print("⏳ جاري حساب المؤشرات المسبقة...")
+        precalculated = {}
+        for symbol, dfs in data_dict.items():
+            precalculated[symbol] = {
+                '5m': self.calculate_indicators(dfs['5m'].copy()),
+                '15m': self.calculate_indicators(dfs['15m'].copy())
+            }
+        print("✅ اكتمل حساب المؤشرات")
+        
         # حلقة زمنية دقيقة
         for i in range(200, min_len):
-            for symbol, dfs in data_dict.items():
+            for symbol, dfs in precalculated.items():
                 df_5m = dfs['5m'].iloc[:i+1].copy()
                 df_15m = dfs['15m'].iloc[:i+1].copy()
-                
-                # إعادة حساب المؤشرات في كل خطوة
-                df_5m = self.calculate_indicators(df_5m)
-                df_15m = self.calculate_indicators(df_15m)
                 
                 current_price = df_5m.iloc[-1]['close']
                 
