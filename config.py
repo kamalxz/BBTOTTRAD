@@ -80,8 +80,29 @@ TRADING_SESSIONS = {
 # --- وضع التشغيل ---
 PAPER_TRADING = True  # True للمحاكاة، False للتداول الحقيقي
 
-# --- مفاتيح API (يجب وضعها في ملف .env) ---
-# BINANCE_API_KEY = ""
-# BINANCE_SECRET_KEY = ""
-# TELEGRAM_BOT_TOKEN = ""
-# TELEGRAM_CHAT_ID = ""
+# --- مفاتيح API (قيم افتراضية للمحاكاة) ---
+BINANCE_API_KEY = ""
+BINANCE_SECRET_KEY = ""
+TELEGRAM_BOT_TOKEN = ""
+TELEGRAM_CHAT_ID = ""
+
+# --- إعدادات السكالبر (Scalper Config) - مُحسّنة لزيادة نسبة الفوز ---
+SCALPER_CONFIG = {
+    'EMA_TREND': 200,
+    'EMA_PULLBACK': 50,
+    'ADX_MIN': 35,              # تم الزيادة من 28 إلى 35 (اتجاه أقوى)
+    'RSI_LONG_MIN': 65,         # تم الزيادة من 62 إلى 65 (زخم شرائي أقوى)
+    'RSI_SHORT_MAX': 35,        # تم التخفيض من 38 إلى 35 (زخم بيعي أقوى)
+    'RSI_OVERBOUGHT': 80,       # تم الزيادة من 75 إلى 80 (السماح بمزيد من الصعود)
+    'RSI_OVERSOLD': 20,         # تم التخفيض من 25 إلى 20 (السماح بمزيد من الهبوط)
+    'VOLUME_SPIKE_RATIO': 1.5,  # تم الزيادة من 1.2 إلى 1.5 (حجم أكبر يؤكد الإشارة)
+    'SL_MULTIFIER': 0.5,        # تم التخفيض من 0.7 إلى 0.5 (وقف خسارة أضيق)
+    'TP_MULTIFIER': 1.0,        # تم الزيادة من 0.5 إلى 1.0 (جني ربح أكبر - نسبة 2:1)
+    'TRAILING_STOP_TRIGGER': 0.004,  # تم الزيادة من 0.003 إلى 0.004 (تفعيل متأخر قليلاً)
+    'TRAILING_STOP_OFFSET': 0.0015,  # تم التخفيض من 0.002 إلى 0.0015 (حماية أفضل للأرباح)
+    'ENTRY_TIMEFRAME': '1m',
+    'TREND_TIMEFRAME': '15m',
+    'PREFERRED_SESSIONS': [(7, 10), (13, 16)],
+    'MIN_PRICE_CHANGE_PCT': 0.002,   # حد أدنى لتغير السعر (فلتر جديد)
+    'EMA_SLOPE_MIN': 0.001          # حد أدنى لميلان EMA (فلتر جديد)
+}
